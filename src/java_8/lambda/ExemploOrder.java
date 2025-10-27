@@ -16,7 +16,7 @@ public class ExemploOrder {
     }
 
     private static void ordenarSemLambda(List<Usuario> usuarios) {
-        usuarios.sort(new Comparator<Usuario>() {
+        Collections.sort(usuarios, new Comparator<Usuario>() {
             @Override
             public int compare(Usuario u1, Usuario u2) {
                 return u1.getNome().compareTo(u2.getNome());
