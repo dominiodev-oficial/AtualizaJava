@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Filtro {
+public class ExemploFilter {
 
     public static void main(String[] args) {
         List<Usuario> usuarios = Usuario.carregarLista();
@@ -20,8 +20,11 @@ public class Filtro {
                 administradores.add(usuario);
             }
         }
+
         System.out.println("Lista filtrada: ");
-        administradores.forEach(u -> System.out.println(u.getNome() + " - " + u.getTipo()));
+        for (Usuario usuario : usuarios) {
+            System.out.println(usuario.getNome() + " - " + usuario.getTipo());
+        }
     }
 
     private static void filtrarComLambda(List<Usuario> usuarios) {
@@ -30,9 +33,7 @@ public class Filtro {
             .collect(Collectors.toList());
 
         System.out.println("Lista filtrada: ");
-        administradores.forEach(u -> {
-            System.out.println(u.getNome() + " - " + u.getTipo());
-        });
+        administradores.forEach(u -> System.out.println(u.getNome() + " - " + u.getTipo()));
     }
 
 }

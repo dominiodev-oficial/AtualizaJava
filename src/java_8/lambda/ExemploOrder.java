@@ -3,7 +3,7 @@ package java_8.lambda;
 import java.util.Comparator;
 import java.util.List;
 
-public class Ordenacao {
+public class ExemploOrder {
 
     public static void main(String[] args) {
         List<Usuario> usuarios = Usuario.carregarLista();

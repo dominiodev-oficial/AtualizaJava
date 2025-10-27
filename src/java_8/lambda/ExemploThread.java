@@ -1,6 +1,6 @@
 package java_8.lambda;
 
-public class ImplementacaoThread {
+public class ExemploThread {
 
     public static void main(String[] args) {
         criaThreadComLambda();
