@@ -8,7 +8,7 @@ public class AlunoMain {
         AlunoService service = new AlunoService();
         List<Aluno> alunos = Aluno.carregarLista();
 
-        service.imprimirAlunosPorCurso(alunos, "Java");
+        service.filtraAlunosPorCurso(alunos, "Java");
     }
 
 }

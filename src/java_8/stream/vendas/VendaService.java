@@ -5,25 +5,25 @@ import java.util.stream.Collectors;
 
 public class VendaService {
 
-    // 1. Filtrar vendas por vendedor
-    public void filtrarVendasPorVendedor(List<Venda> vendas, String vendedor) {
+    // 1. Filtra vendas por vendedor
+    public void filtraVendasPorVendedor(List<Venda> vendas, String vendedor) {
         vendas.stream()
                 .filter(v -> v.getVendedor().equalsIgnoreCase(vendedor))
                 .forEach(v -> System.out.println(v));
     }
 
-    // 2. Criar lista de clientes sem repetição
-    public void listarNomeClientes(List<Venda> vendas) {
-        List<String> clientes = vendas.stream()
+    // 2. Lista nome de clientes sem repetição
+    public void listaNomeClientes(List<Venda> vendas) {
+        String clientes = vendas.stream()
                 .map(v -> v.getCliente())
                 .distinct()
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(", "));
 
         System.out.println("Clientes: " + clientes);
     }
 
-    // 3. Calcular média do valor de vendas
-    public void calcularEstatisticasDeVendas(List<Venda> vendas) {
+    // 3. Calcula estatisticas do valor de vendas
+    public void calculaEstatisticasDeVendas(List<Venda> vendas) {
         double media = vendas.stream()
                 .mapToDouble(Venda::getValor)
                 .average()
@@ -37,8 +37,8 @@ public class VendaService {
         System.out.println("Total vendido: " + total);
     }
 
-    // 4. Agrupar vendas por vendedor
-    public void agruparVendasPorVendedor(List<Venda> vendas) {
+    // 4. Agrupa vendas por vendedor
+    public void agrupaVendasPorVendedor(List<Venda> vendas) {
         Map<String, List<Venda>> vendasPorVendedor = vendas.stream()
                 .collect(Collectors.groupingBy(v -> v.getVendedor()));
         vendasPorVendedor.forEach((vendedor, lista) -> {
@@ -47,15 +47,15 @@ public class VendaService {
         });
     }
 
-    // 5. Ordenar vendas por valor (decrescente)
+    // 5. Ordena vendas por valor (decrescente)
     public void ordenaVendasPorValor(List<Venda> vendas) {
         vendas.stream()
                 .sorted(Comparator.comparingDouble((Venda v) -> v.getValor()).reversed())
                 .forEach(v -> System.out.println(v));
     }
 
-    // 6. Verificar se há alguma venda aberta
-    public void avaliaSituacaoVendas(List<Venda> vendas) {
+    // 6. Verifica vendas por situação
+    public void verificaVendasPorSituacao(List<Venda> vendas) {
         boolean existeAberta = vendas.stream()
                 .anyMatch(v -> "ABERTA".equalsIgnoreCase(v.getSituacao()));
 
