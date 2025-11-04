@@ -8,7 +8,7 @@ public class VendaMain {
         VendaService service = new VendaService();
         List<Venda> vendas = Venda.carregarLista();
 
-        service.imprimirTotalVendasAgrupadoVendedores(vendas);
+        service.filtrarVendasPorVendedor(vendas, "Ana");
     }
 
 }
