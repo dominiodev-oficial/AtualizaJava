@@ -14,27 +14,25 @@ public class VendaService {
 
     // 2. Lista nome de clientes sem repetição
     public void listaNomeClientes(List<Venda> vendas) {
-        String clientes = vendas.stream()
+        String nomes = vendas.stream()
                 .map(v -> v.getCliente())
                 .distinct()
                 .collect(Collectors.joining(", "));
-
-        System.out.println("Clientes: " + clientes);
+        System.out.println("Clientes: " + nomes);
     }
 
     // 3. Calcula estatisticas do valor de vendas
     public void calculaEstatisticasDeVendas(List<Venda> vendas) {
         double media = vendas.stream()
-                .mapToDouble(Venda::getValor)
+                .mapToDouble(v -> v.getValor())
                 .average()
                 .orElse(0.0);
-
-        double total = vendas.stream()
-                .mapToDouble(Venda::getValor)
-                .sum();
-
         System.out.println("Média das vendas: " + media);
-        System.out.println("Total vendido: " + total);
+
+        double soma = vendas.stream()
+                .mapToDouble(v -> v.getValor())
+                .sum();
+        System.out.println("Total vendido: " + soma);
     }
 
     // 4. Agrupa vendas por vendedor
@@ -57,10 +55,9 @@ public class VendaService {
     // 6. Verifica vendas por situação
     public void verificaVendasPorSituacao(List<Venda> vendas) {
         boolean existeAberta = vendas.stream()
-                .anyMatch(v -> "ABERTA".equalsIgnoreCase(v.getSituacao()));
-
+                .anyMatch(v -> v.getSituacao().equalsIgnoreCase("ABERTA"));
         boolean todasConcluidas = vendas.stream()
-                .allMatch(v -> "CONCLUIDA".equalsIgnoreCase(v.getSituacao()));
+                .allMatch(v -> v.getSituacao().equalsIgnoreCase("CONCLUIDA"));
 
         System.out.println("Há vendas abertas? " + existeAberta);
         System.out.println("Todas as vendas estão concluídas? " + todasConcluidas);
